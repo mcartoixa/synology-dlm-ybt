@@ -1,0 +1,22 @@
+language: php
+php:
+- '5.6'
+
+env:
+  - DLM_PACKAGE_VERSION=1.0.$TRAVIS_BUILD_NUMBER
+
+install:
+  - php bin/composer.phar install -n
+
+script:
+  - vendor/bin/phing -f build.xml prepare.version release
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "DPhOBqvcuegjtxaSOaYkeU+9gHoV6ySLvirT1j3qH2fSKWbc8WWIyUiaIxDJavnTH+/EfraPKeySEQR4jCtB4txCLY+nSVYVc0B5p4XlvYK1nkYEnqBWlsEmnKBcApH7UJj7kvxHuO7odGYZteRveUWcUOUhVwXcBNTqAsWKMT8h+lDmOd1DvYPDhQ6ZDo31m9lu0i04u9kJa8XPx508AxcKSx3Zdg9sou42C7sqSBEa+LPEaz5/4WnmHkXvzwU6bwlRlhu+d4u6cfYslxQII2J7IaLWp+N8QaFJ505CtlGl7JYbg7PRTKaqeRcs4mOuShkQidtGf+qbZyn2Uzd63HKbyfNtKJn/68JnqFWMeVpfw9dzalXQQXSlYjoR5HTconcDSUcRoOg4hUJR/jp6eYqD9tpxlUOQvP9DPrtCDR6msuKaxo1dnP8BJ1sBuOcYvj/35R8KZLpaUyaX0EDeGyYrxzdWf/9M2+YzCtl1a+Qx+bDuwXFQujC6Yvjptv+7QFrMB/WKOZ3Zp0T3ChY7Inza1ZatcyVpj2pdsA7z67bJYHxUx0glfj6KAJ2vhV+EWhx9GJRXBFnJ/CSqtM2pEar5oL0t6MGbsha0ZagNxE6cYVU2+z5mRvG/8aBgAxsJr7rlYCzgIMJ2PwqHBZzBUkkqpp13zKJ/rP0aCtAzx1I="
+  file_glob: true
+  file: tmp/out/bin/*
+  skip_cleanup: true
+  on:
+    tags: true

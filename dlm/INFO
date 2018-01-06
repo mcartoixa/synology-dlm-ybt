@@ -1,0 +1,10 @@
+{
+"name": "mcartoixa_yourbittorrent",
+"displayname": "YourBittorrent",
+"description": "YourBittorrent search module for Synology Download Manager",
+"version": "0.0.0",
+"site": "https://yourbittorrent.com/",
+"module": "search.php",
+"type": "search",
+"class": "SynoDLMSearchYourBittorrent"
+}

@@ -76,10 +76,10 @@ class SynoDLMSearchYourBittorrent
                 switch ($dateNodes[0]->nodeValue)
                 {
                     case 'Today':
-                        $datetime = date('Y-m-d', time()).'00:00:00';
+                        $datetime = date('Y-m-d', time()).' 00:00:00';
                         break;
                     case 'Yesterday':
-                        $datetime = date('Y-m-d', time() - 24 * 60 * 60).'00:00:00';
+                        $datetime = date('Y-m-d', time() - 24 * 60 * 60).' 00:00:00';
                         break;
                     default:
                         $datetime = DateTime::createFromFormat('j/m/y|', $dateNodes[0]->nodeValue, new DateTimeZone('UTC'))->format('Y-m-d H:i:s');

@@ -27,6 +27,8 @@ class SynoDLMSearchYourBittorrent
 
     public function parse($plugin, $response)
     {
+        $ret = 0;
+
         $internalErrors = libxml_use_internal_errors(true);
 
         $dom = new DOMDocument('1.0', 'UTF-8');
@@ -117,10 +119,13 @@ class SynoDLMSearchYourBittorrent
                 }
 
                 $plugin->addResult($title, $download, $size, $datetime, $page, $hash, $seeds, $leechs, $category);
+                $ret++;
             }
         }
 
         libxml_use_internal_errors($internalErrors);
+
+        return $ret;
     }
 }
 ?>
